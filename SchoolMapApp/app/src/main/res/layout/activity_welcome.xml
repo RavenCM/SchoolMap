@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.teemo.schoolmap.welcome.activity.WelcomeActivity">
+    tools:context="com.teemo.schoolmap.activity.WelcomeActivity">
 
     <ImageView
         android:id="@+id/iv_welcome"
@@ -19,5 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginEnd="@dimen/margin_default" />
+        android:background="@drawable/btn_skip_welcome"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:layout_marginTop="@dimen/margin_default"/>
 </FrameLayout>

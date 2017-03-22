@@ -1,25 +1,35 @@
-package com.teemo.schoolmap.welcome.activity;
+package com.teemo.schoolmap.activity;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.teemo.schoolmap.R;
-import com.teemo.schoolmap.common.util.ActivityUtil;
-import com.teemo.schoolmap.common.util.BitmapUtil;
-import com.teemo.schoolmap.welcome.config.WelcomeConfig;
+import com.teemo.schoolmap.util.ActivityUtil;
+import com.teemo.schoolmap.util.BitmapUtil;
+import com.teemo.schoolmap.config.WelcomeConfig;
 
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
- * Created By Teemo On 2017.3.19
- * ClassName: WelcomeActivity
+ * @author Teemo
+ * @version 1.0
+ * @Date 2017.3.19
+ * @description 欢迎界面activity
  */
 public class WelcomeActivity extends AppCompatActivity {
     private ImageView ivWelcome;
     private Button btnSkipWelcome;
+
+    private Timer timer;
+    private TimerTask timerTask;
+    private int currentSecond = WelcomeConfig.SHOW_TIME;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,5 +62,24 @@ public class WelcomeActivity extends AppCompatActivity {
     private void init() {
         ivWelcome = (ImageView) this.findViewById(R.id.iv_welcome);
         btnSkipWelcome = (Button) this.findViewById(R.id.btn_skip_welcome);
+
+        timer = new Timer();
+        timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        btnSkipWelcome.setText(currentSecond + " S");
+                        currentSecond--;
+                        if (currentSecond < 0){
+                            timer.cancel();
+                            btnSkipWelcome.setVisibility(View.GONE);
+                        }
+                    }
+                });
+            }
+        };
+        timer.schedule(timerTask, 1000);
     }
 }
