@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:background="@drawable/btn_skip_welcome"
+        android:textColor="@color/colorIgnoreText"
         android:layout_marginEnd="@dimen/margin_default"
         android:layout_marginTop="@dimen/margin_default"/>
 </FrameLayout>

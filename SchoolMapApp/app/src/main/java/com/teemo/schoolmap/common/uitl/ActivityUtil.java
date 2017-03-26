@@ -1,4 +1,4 @@
-package com.teemo.schoolmap.util;
+package com.teemo.schoolmap.common.uitl;
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;

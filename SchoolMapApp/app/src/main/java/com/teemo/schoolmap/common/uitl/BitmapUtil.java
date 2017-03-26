@@ -1,4 +1,4 @@
-package com.teemo.schoolmap.util;
+package com.teemo.schoolmap.common.uitl;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;

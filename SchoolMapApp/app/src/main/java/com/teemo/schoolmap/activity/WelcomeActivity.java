@@ -1,8 +1,11 @@
 package com.teemo.schoolmap.activity;
 
-import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,9 +13,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.teemo.schoolmap.R;
-import com.teemo.schoolmap.util.ActivityUtil;
-import com.teemo.schoolmap.util.BitmapUtil;
-import com.teemo.schoolmap.config.WelcomeConfig;
+import com.teemo.schoolmap.common.application.User;
+import com.teemo.schoolmap.common.config.MessageConfig;
+import com.teemo.schoolmap.common.config.WelcomeConfig;
+import com.teemo.schoolmap.common.uitl.ActivityUtil;
+import com.teemo.schoolmap.common.uitl.BitmapUtil;
+import com.teemo.schoolmap.common.uitl.SharedPreferencesUtil;
+
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -23,13 +30,12 @@ import java.util.TimerTask;
  * @Date 2017.3.19
  * @description 欢迎界面activity
  */
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener {
     private ImageView ivWelcome;
     private Button btnSkipWelcome;
 
-    private Timer timer;
-    private TimerTask timerTask;
     private int currentSecond = WelcomeConfig.SHOW_TIME;
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,26 +66,64 @@ public class WelcomeActivity extends AppCompatActivity {
      * 初始化组件
      */
     private void init() {
+        // 初始化View
         ivWelcome = (ImageView) this.findViewById(R.id.iv_welcome);
         btnSkipWelcome = (Button) this.findViewById(R.id.btn_skip_welcome);
-
-        timer = new Timer();
-        timerTask = new TimerTask() {
+        // 设置时间监听
+        btnSkipWelcome.setOnClickListener(this);
+        // 设置定时器
+        Timer timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        btnSkipWelcome.setText(currentSecond + " S");
+                        btnSkipWelcome.setText(WelcomeConfig.SKIP_TEXT + "（" + currentSecond + " S）");
                         currentSecond--;
-                        if (currentSecond < 0){
-                            timer.cancel();
-                            btnSkipWelcome.setVisibility(View.GONE);
+                        if (currentSecond < 0) {
+                            handler.sendEmptyMessage(MessageConfig.WELCOME_ACTIVITY_SKIP);
                         }
                     }
                 });
             }
         };
-        timer.schedule(timerTask, 1000);
+        // 启动定时器
+        timer.schedule(timerTask, 1000, 1000);
+        // 初始化Handler
+        handler = new WelcomeHandler(timer, timerTask, btnSkipWelcome, this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        currentSecond = 0;
+        handler.sendEmptyMessage(MessageConfig.WELCOME_ACTIVITY_SKIP);
+    }
+
+    private static class WelcomeHandler extends Handler {
+        private Timer timer;
+        private TimerTask timerTask;
+        private Button btnSkipWelcome;
+        private Activity activity;
+
+        WelcomeHandler(Timer timer, TimerTask timerTask, Button btnSkipWelcome, Activity activity) {
+            this.timer = timer;
+            this.timerTask = timerTask;
+            this.btnSkipWelcome = btnSkipWelcome;
+            this.activity = activity;
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == MessageConfig.WELCOME_ACTIVITY_SKIP) {
+                timerTask.cancel();
+                timer.cancel();
+                btnSkipWelcome.setVisibility(View.GONE);
+                User user = SharedPreferencesUtil.readUserInfo(activity);
+                if (user.getUserId() == 0){
+                    activity.startActivity(new Intent(activity.getApplicationContext(), SignInActivity.class));
+                }
+            }
+        }
     }
 }

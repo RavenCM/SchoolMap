@@ -1,4 +1,4 @@
-package com.teemo.schoolmap.config;
+package com.teemo.schoolmap.common.config;
 
 import com.teemo.schoolmap.R;
 
@@ -29,4 +29,9 @@ public class WelcomeConfig {
      * 壁纸ID数组
      */
     public static int[] wallpaperIdList = new int[]{R.drawable.wallpaper1, R.drawable.wallpaper2, R.drawable.wallpaper3, R.drawable.wallpaper4, R.drawable.wallpaper5, R.drawable.wallpaper6};
+
+    /**
+     * 跳过欢迎界面按钮显示文字
+     */
+    public static final String SKIP_TEXT = "跳过";
 }
