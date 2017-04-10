@@ -5,4 +5,6 @@
     
     <dimen name="margin_default">8dp</dimen>
     <dimen name="radius_default">4dp</dimen>
+    <dimen name="large_avatar">108dp</dimen>
+    <dimen name="normal_avatar">64dp</dimen>
 </resources>

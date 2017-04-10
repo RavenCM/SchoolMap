@@ -3,8 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorIgnore">#71d7d7d7</color>
-    <color name="colorIgnoreText">#FFF</color>
+    <color name="colorIgnore">#71969696</color>
+    <color name="colorIgnoreText">#d7d7d7</color>
     <color name="colorShadow">#25808080</color>
     <color name="colorLoadingText">#757575</color>
+    <color name="white">#FFFFFF</color>
 </resources>

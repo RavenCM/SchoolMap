@@ -3,4 +3,15 @@
     <string name="welcome_image">WelcomeImage</string>
     <string name="loading_imageView">Loading ImageView</string>
     <string name="loading">loading...</string>
+    <string name="user_avatar">用户头像</string>
+    <string name="email_hint">Please input your email...</string>
+    <string name="sign_in_background">sign in background</string>
+    <string name="network_not_connected">当前网络不可用</string>
+    <string name="gps_not_connected">当前GPS不可用</string>
+    <string name="open_network">请保持网络连接，以保证定位地精确！</string>
+    <string name="open_gps">请保持GPS打开，以保证定位地精确！</string>
+    <string name="confirm">确认</string>
+    <string name="cancel">取消</string>
+    <string name="location_fail">定位失败！</string>
+
 </resources>

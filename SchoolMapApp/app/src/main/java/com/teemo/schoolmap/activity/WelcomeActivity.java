@@ -13,12 +13,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.teemo.schoolmap.R;
-import com.teemo.schoolmap.common.application.User;
 import com.teemo.schoolmap.common.config.MessageConfig;
 import com.teemo.schoolmap.common.config.WelcomeConfig;
 import com.teemo.schoolmap.common.uitl.ActivityUtil;
 import com.teemo.schoolmap.common.uitl.BitmapUtil;
-import com.teemo.schoolmap.common.uitl.SharedPreferencesUtil;
 
 
 import java.util.Timer;
@@ -119,10 +117,8 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
                 timerTask.cancel();
                 timer.cancel();
                 btnSkipWelcome.setVisibility(View.GONE);
-                User user = SharedPreferencesUtil.readUserInfo(activity);
-                if (user.getUserId() == 0){
-                    activity.startActivity(new Intent(activity.getApplicationContext(), SignInActivity.class));
-                }
+                activity.startActivity(new Intent(activity.getApplicationContext(), MainActivity.class));
+                activity.finish();
             }
         }
     }

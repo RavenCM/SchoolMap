@@ -6,9 +6,8 @@ import java.io.Serializable;
  * @author Teemo
  * @version 1.0
  * @Date 2017/3/26 17:11
- * @description
+ * @description 全局的用户信息
  */
-
 public class User implements Serializable {
 
     private static User user = new User();

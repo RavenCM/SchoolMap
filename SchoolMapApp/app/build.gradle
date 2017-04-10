@@ -30,4 +30,5 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.2.0'
     testCompile 'junit:junit:4.12'
+    compile files('libs/AMap3DMap_5.0.0_AMapNavi_5.0.0_AMapSearch_5.0.0_AMapLocation_3.3.0_20170321.jar')
 }
