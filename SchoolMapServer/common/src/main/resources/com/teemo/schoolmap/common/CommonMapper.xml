@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.teemo.schoolmap.common.mybatis.mapper.CommonMapper">
+
+    <sql id="commonWhere">
+        <where>
+            <foreach collection="where" index="condition" item="value" separator="AND">
+                ${condition.name} ${condition.op}
+                <if test="condition.op == 'LIKE'">'%${value}%'</if>
+                <if test="condition.op != 'LIKE'">#{value}</if>
+            </foreach>
+        </where>
+    </sql>
+
+    <insert id="insert" parameterType="map" useGeneratedKeys="true" keyProperty="generatedKey">
+        INSERT INTO
+            ${table}(${columns})
+        VALUES
+        <foreach collection="values" item="value" open="(" separator="," close=")">
+            #{value}
+        </foreach>
+    </insert>
+
+    <select id="select" resultType="java.util.HashMap">
+        SELECT
+        ${columns}
+        FROM
+        ${table}
+        <include refid="commonWhere"/>
+    </select>
+
+    <update id="update" parameterType="map">
+        UPDATE
+            ${table}
+        SET
+        <if test="update != null">
+            <foreach collection="update" index="key" item="value" separator=",">
+                ${key}=#{value}
+            </foreach>
+        </if>
+          ,objectVersionNumber = objectVersionNumber + 1
+        <include refid="commonWhere"/>
+    </update>
+
+    <delete id="delete" parameterType="map">
+        DELETE FROM
+            ${table}
+        <include refid="commonWhere"/>
+    </delete>
+</mapper>

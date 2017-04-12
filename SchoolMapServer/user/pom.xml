@@ -11,11 +11,19 @@
 	<name>user</name>
 	<description>Module of School Map Server</description>
 
-	<parent>
-		<groupId>com.teemo</groupId>
-		<artifactId>schoolmap-server</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
+    <parent>
+        <groupId>com.teemo</groupId>
+        <artifactId>schoolmap-server</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+	<dependencies>
+        <dependency>
+            <groupId>com.teemo.schoolmap</groupId>
+            <artifactId>common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+	</dependencies>
 
 	<build>
 		<plugins>
