@@ -1,5 +1,6 @@
 package com.teemo.schoolmap.user.dto;
 
+import com.teemo.schoolmap.common.mybatis.component.BaseDTO;
 import com.teemo.schoolmap.common.mybatis.annotation.Condition;
 
 import javax.persistence.Column;
@@ -13,12 +14,12 @@ import javax.persistence.Table;
  * @description
  */
 @Table(name = "demo")
-public class DemoDto {
+public class DemoDto extends BaseDTO {
     @Id
     @Column
     @Condition
     private int id;
-    
+
     @Column
     @Condition
     private String value;
@@ -57,6 +58,12 @@ public class DemoDto {
                 "id=" + id +
                 ", value='" + value + '\'' +
                 ", meaning='" + meaning + '\'' +
+                "objectVersionNumber=" + objectVersionNumber +
+                ", createdBy=" + createdBy +
+                ", creationDate=" + creationDate +
+                ", lastUpdatedBy=" + lastUpdatedBy +
+                ", lastUpdatedDate=" + lastUpdatedDate +
+                ", isEnable=" + isEnable +
                 '}';
     }
 }

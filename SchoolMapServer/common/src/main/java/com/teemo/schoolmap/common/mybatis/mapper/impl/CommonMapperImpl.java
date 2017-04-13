@@ -1,5 +1,6 @@
 package com.teemo.schoolmap.common.mybatis.mapper.impl;
 
+import com.teemo.schoolmap.common.mybatis.component.BaseDTO;
 import com.teemo.schoolmap.common.mybatis.exception.MybatisException;
 import com.teemo.schoolmap.common.mybatis.mapper.CommonMapper;
 import com.teemo.schoolmap.common.mybatis.util.ReflectUtil;
@@ -107,7 +108,11 @@ public class CommonMapperImpl<T> extends SqlSessionDaoSupport implements CommonM
     @Override
     public int update(T dto) {
         Assert.notNull(dto, CommonUtil.buildAssertNotNullMessage(dto, "update"));
-        return getSqlSession().update(UPDATE, SqlArgumentUtil.prepareUpdateArgument(dto, false));
+        int cnt = getSqlSession().update(UPDATE, SqlArgumentUtil.prepareUpdateArgument(dto, false));
+        if (dto instanceof BaseDTO){
+            ((BaseDTO) dto).setObjectVersionNumber(((BaseDTO) dto).getObjectVersionNumber() + 1);
+        }
+        return cnt;
     }
 
     /**
@@ -119,7 +124,11 @@ public class CommonMapperImpl<T> extends SqlSessionDaoSupport implements CommonM
     @Override
     public int updateSelective(T dto) {
         Assert.notNull(dto, CommonUtil.buildAssertNotNullMessage(dto, "updateSelective"));
-        return getSqlSession().update(UPDATE, SqlArgumentUtil.prepareUpdateArgument(dto, true));
+        int cnt = getSqlSession().update(UPDATE, SqlArgumentUtil.prepareUpdateArgument(dto, true));
+        if (dto instanceof BaseDTO){
+            ((BaseDTO) dto).setObjectVersionNumber(((BaseDTO) dto).getObjectVersionNumber() + 1);
+        }
+        return cnt;
     }
 
     /**

@@ -90,7 +90,7 @@ public class DtoMetaInfo {
      * @param object object
      * @return 主键
      */
-    public Map<WhereCondition, Object> getPrimaryKeyCondition(Object object) {
+    public Map<WhereCondition, Object> getPrimaryKeyCondition(Object object, boolean isSelect) {
         if (primaryKey == null) throw new MybatisException("在更新的时候没有找到主键");
         Map<WhereCondition, Object> conditionMap = new HashMap<>();
         // 添加主键
@@ -102,7 +102,7 @@ public class DtoMetaInfo {
         conditionMap.put(whereCondition, ReflectionUtils.getField(primaryKeyField, object));
 
         // 添加 ObjectVersionNumber
-        if (columns.containsKey(SqlKeyWord.OBJECT_VERSION_NUMBER.getContent())) {
+        if (!isSelect && columns.containsKey(SqlKeyWord.OBJECT_VERSION_NUMBER.getContent())) {
             whereCondition = new WhereCondition();
             whereCondition.setName(SqlKeyWord.OBJECT_VERSION_NUMBER.getContent());
             whereCondition.setOp(Condition.EQ);

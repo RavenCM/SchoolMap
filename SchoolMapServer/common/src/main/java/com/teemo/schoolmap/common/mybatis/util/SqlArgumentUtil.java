@@ -1,9 +1,11 @@
 package com.teemo.schoolmap.common.mybatis.util;
 
+import com.teemo.schoolmap.common.mybatis.component.BaseDTO;
 import com.teemo.schoolmap.common.mybatis.component.DtoMetaInfo;
-import com.teemo.schoolmap.common.mybatis.component.WhereCondition;
 import com.teemo.schoolmap.common.mybatis.enums.SqlKeyWord;
 import com.teemo.schoolmap.common.util.CommonUtil;
+import com.teemo.schoolmap.common.util.RequestUtil;
+import com.teemo.schoolmap.common.util.TimeUtil;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
@@ -28,6 +30,13 @@ public class SqlArgumentUtil {
      * @return 插入的参数
      */
     public static Map<String, Object> prepareInsertArgument(Object object, boolean isSelective) {
+        if (object instanceof BaseDTO){
+            BaseDTO baseDTO = (BaseDTO) object;
+            baseDTO.setCreatedBy(new RequestUtil().getUserId());
+            baseDTO.setCreationDate(TimeUtil.getCurrentDate());
+            baseDTO.setIsEnable(1);
+            baseDTO.setObjectVersionNumber(1);
+        }
         DtoMetaInfo metaInfo = DtoMetaInfoBuilder.build(object);
         Map<String, Object> insertArgumentMap = new HashMap<>();
         insertArgumentMap.put(SqlKeyWord.TABLE.getContent(), metaInfo.getTableName());
@@ -67,7 +76,7 @@ public class SqlArgumentUtil {
         Map<String, Object> selectArgumentMap = new HashMap<>();
         selectArgumentMap.put(SqlKeyWord.TABLE.getContent(), metaInfo.getTableName());
         selectArgumentMap.put(SqlKeyWord.COLUMNS.getContent(), String.join(",", metaInfo.getColumns().keySet()));
-        selectArgumentMap.put(SqlKeyWord.WHERE.getContent(), isCondition ? metaInfo.getWhereCondition(object) : metaInfo.getPrimaryKeyCondition(object));
+        selectArgumentMap.put(SqlKeyWord.WHERE.getContent(), isCondition ? metaInfo.getWhereCondition(object) : metaInfo.getPrimaryKeyCondition(object, true));
         return selectArgumentMap;
     }
 
@@ -79,13 +88,18 @@ public class SqlArgumentUtil {
      * @return 更新的参数
      */
     public static Map<String, Object> prepareUpdateArgument(Object object, boolean isSelective) {
+        if (object instanceof BaseDTO){
+            BaseDTO baseDTO = (BaseDTO) object;
+            baseDTO.setLastUpdatedBy(new RequestUtil().getUserId());
+            baseDTO.setLastUpdatedDate(TimeUtil.getCurrentDate());
+        }
         DtoMetaInfo metaInfo = DtoMetaInfoBuilder.build(object);
         Map<String, Object> updateArgumentMap = new HashMap<>();
         updateArgumentMap.put(SqlKeyWord.TABLE.getContent(), metaInfo.getTableName());
         Map<String, Object> columns = isSelective ? CommonUtil.filterMap(metaInfo.getColumnWithOutPrimaryKey(object)) : metaInfo.getColumnWithOutPrimaryKey(object);
         columns.remove(SqlKeyWord.OBJECT_VERSION_NUMBER.getContent());
         updateArgumentMap.put(SqlKeyWord.UPDATE.getContent(), columns);
-        updateArgumentMap.put(SqlKeyWord.WHERE.getContent(), metaInfo.getPrimaryKeyCondition(object));
+        updateArgumentMap.put(SqlKeyWord.WHERE.getContent(), metaInfo.getPrimaryKeyCondition(object, false));
         return updateArgumentMap;
     }
 
@@ -99,7 +113,7 @@ public class SqlArgumentUtil {
         DtoMetaInfo metaInfo = DtoMetaInfoBuilder.build(object);
         Map<String, Object> deleteArgumentMap = new HashMap<>();
         deleteArgumentMap.put(SqlKeyWord.TABLE.getContent(), metaInfo.getTableName());
-        deleteArgumentMap.put(SqlKeyWord.WHERE.getContent(), metaInfo.getPrimaryKeyCondition(object));
+        deleteArgumentMap.put(SqlKeyWord.WHERE.getContent(), metaInfo.getPrimaryKeyCondition(object, false));
         return deleteArgumentMap;
     }
 }

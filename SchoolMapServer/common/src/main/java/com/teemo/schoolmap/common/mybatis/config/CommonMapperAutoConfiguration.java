@@ -1,6 +1,5 @@
 package com.teemo.schoolmap.common.mybatis.config;
 
-import com.teemo.schoolmap.common.mybatis.mapper.CommonMapper;
 import com.teemo.schoolmap.common.mybatis.mapper.impl.CommonMapperImpl;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;

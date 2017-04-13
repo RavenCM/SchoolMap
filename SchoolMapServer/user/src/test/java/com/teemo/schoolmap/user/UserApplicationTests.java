@@ -7,46 +7,32 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@AutoConfigureMockMvc
 public class UserApplicationTests {
 
     @Autowired
     private CommonMapper<DemoDto> commonMapper;
 
+    @Autowired
+    private MockMvc mockMvc;
+
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Test
-	public void contextLoads() {
-        DemoDto insertDemo = new DemoDto();
-        insertDemo.setValue("9999");
-        insertDemo.setMeaning("01010");
-        commonMapper.insertSelective(insertDemo);
-        logger.info("insertDemo={}", insertDemo);
-
-        DemoDto selectDemo = new DemoDto();
-        selectDemo.setValue("9999");
-        selectDemo.setMeaning("01010");
-        selectDemo = commonMapper.select(selectDemo).get(0);
-        logger.info("selectDemo={}", selectDemo);
-
-        DemoDto updateDemo = selectDemo;
-        updateDemo.setValue("8888");
-        updateDemo.setMeaning("101010");
-        commonMapper.update(updateDemo);
-        logger.info("updateDemo={}", updateDemo);
-
-        DemoDto selectByPKDemo = new DemoDto();
-        selectByPKDemo.setId(updateDemo.getId());
-        selectByPKDemo = commonMapper.selectByPrimaryKey(selectByPKDemo);
-        logger.info("selectByPKDemo={}", selectByPKDemo);
-
-        DemoDto deleteDemo = selectByPKDemo;
-        commonMapper.delete(selectByPKDemo);
-        logger.info("deleteDemo={}", deleteDemo);
-	}
+    @Test
+    @Transactional
+    public void contextLoads() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/demo/test").requestAttr("userId", 100)).andExpect(MockMvcResultMatchers.status().isOk());
+    }
 
 }

@@ -55,7 +55,7 @@ public class ReflectUtil {
             Column column = AnnotationUtils.getAnnotation(field, Column.class);
             if (column != null) {
                 String columnName = StringUtils.isEmpty(column.name()) ? field.getName() : column.name();
-                columns.put(columnName, field);
+                columns.put(ContentUtil.camelToUnderline(columnName), field);
                 if (field.isAnnotationPresent(Id.class)) {
                     if (dtoMetaInfo.getPrimaryKey() != null) {
                         throw new MybatisException(object.getClass().getName() + " 主键必须唯一");

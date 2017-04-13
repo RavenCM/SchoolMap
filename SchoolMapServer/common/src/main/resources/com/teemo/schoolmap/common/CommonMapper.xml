@@ -40,7 +40,7 @@
                 ${key}=#{value}
             </foreach>
         </if>
-          ,objectVersionNumber = objectVersionNumber + 1
+          ,OBJECT_VERSION_NUMBER = OBJECT_VERSION_NUMBER + 1
         <include refid="commonWhere"/>
     </update>
 

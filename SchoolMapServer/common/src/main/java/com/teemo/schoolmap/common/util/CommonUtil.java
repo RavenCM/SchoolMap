@@ -11,6 +11,8 @@ import java.util.Map;
  */
 public class CommonUtil {
 
+
+
     /**
      * Assert.NotNull 消息参数的构建
      *
