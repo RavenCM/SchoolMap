@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.teemo.schoolmap.user.mapper.UserMapper">
+
+    <select id="userLogin" parameterType="com.teemo.schoolmap.user.dto.User" resultType="com.teemo.schoolmap.user.dto.User">
+        SELECT
+            su.USER_ID AS 'userId',
+            su.USER_TYPE_ID AS 'userTypeId',
+            su.PASSWORD AS 'password',
+            subi.USER_BASIS_INFORMATION_ID AS 'userBasisInformation.userBasisInformationId',
+            subi.USER_ID AS 'userBasisInformation.userId',
+            subi.EMAIL AS 'userBasisInformation.email',
+            subi.USERNAME AS 'userBasisInformation.username',
+            subi.SEX AS 'userBasisInformation.sex',
+            suei.USER_EXTRA_INFORMATION_ID AS 'userExtraInformation.userExtraInformationId',
+            suei.USER_ID AS 'userExtraInformation.userId',
+            suei.TELEPHONE AS 'userExtraInformation.telephone',
+            suei.USER_ADDRESS_ID AS 'userExtraInformation.userAddressId',
+            suei.AVATAR_PATH AS 'userExtraInformation.avatarPath',
+            suei.SIGNATURE AS 'userExtraInformation.signature',
+            sua.USER_ADDRESS_ID AS 'userExtraInformation.userAddress.userAddressId',
+            sua.COUNTRY AS 'userExtraInformation.userAddress.country',
+            sua.PROVINCE AS 'userExtraInformation.userAddress.province',
+            sua.CITY AS 'userExtraInformation.userAddress.city'
+        FROM
+            sm_user su
+            INNER JOIN sm_user_basis_information subi ON su.USER_ID = subi.USER_ID AND subi.IS_ENABLE = 1
+            LEFT JOIN sm_user_extra_information suei ON su.USER_ID = suei.USER_ID AND subi.IS_ENABLE = 1
+            LEFT JOIN sm_user_address sua ON suei.USER_ADDRESS_ID = sua.USER_ADDRESS_ID AND sua.IS_ENABLE = 1
+        WHERE
+            su.IS_ENABLE = 1
+            AND su.PASSWORD = #{password}
+        <if test="userBasisInformation != null &amp;&amp; userBasisInformation.email != null &amp;&amp; !&quot;&quot;.equals(userBasisInformation.email.trim())">
+            AND subi.EMAIL = #{userBasisInformation.email}
+        </if>
+    </select>
+</mapper>
