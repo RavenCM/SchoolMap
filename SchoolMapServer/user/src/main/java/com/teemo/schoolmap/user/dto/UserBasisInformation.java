@@ -96,4 +96,15 @@ public class UserBasisInformation extends BaseDTO{
     public void setSex(String sex) {
         this.sex = sex;
     }
+
+    @Override
+    public String toString() {
+        return "UserBasisInformation{" +
+                "userBasisInformationId=" + userBasisInformationId +
+                ", userId=" + userId +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", sex='" + sex + '\'' +
+                '}';
+    }
 }

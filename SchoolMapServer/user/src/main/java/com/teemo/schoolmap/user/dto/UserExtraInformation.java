@@ -116,4 +116,17 @@ public class UserExtraInformation extends BaseDTO{
     public void setUserAddress(UserAddress userAddress) {
         this.userAddress = userAddress;
     }
+
+    @Override
+    public String toString() {
+        return "UserExtraInformation{" +
+                "userExtraInformationId=" + userExtraInformationId +
+                ", userId=" + userId +
+                ", telephone='" + telephone + '\'' +
+                ", userAddressId=" + userAddressId +
+                ", avatarPath='" + avatarPath + '\'' +
+                ", signature='" + signature + '\'' +
+                ", userAddress=" + userAddress.toString() +
+                '}';
+    }
 }

@@ -6,10 +6,7 @@ import com.teemo.schoolmap.user.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 
@@ -28,12 +25,47 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    /**
+     * 用户登录
+     *
+     * @param user user
+     * @return 登录结果
+     */
     @GetMapping
-    public ResponseData getUser(User user) {
-        logger.info("getUser={}", user);
-        if (user.getUserId() == null){
+    public ResponseData selectUser(User user) {
+        logger.info("selectUser={}", user);
+        // 登录
+        if (user.getUserId() == null) {
             user = userService.userLogin(user);
         }
         return new ResponseData(Collections.singletonList(user));
+    }
+
+    /**
+     * 新增用户
+     *
+     * @param user 用户
+     * @return 新增后的用户（包含用户ID）
+     */
+    @PostMapping
+    public ResponseData insertUser(@RequestBody User user) {
+        logger.info("insertUser={}", user);
+        // 注册
+        if (user.getUserId() == null) {
+            user = userService.userSignUp(user);
+        }
+        return new ResponseData(Collections.singletonList(user));
+    }
+
+    /**
+     * 更新用户
+     *
+     * @return 更新后用户
+     */
+    @PutMapping
+    public ResponseData updateUser(@RequestBody User user) {
+        logger.info("updateUser={}", user);
+        // 更新
+        return new ResponseData(Collections.singletonList(userService.userUpdate(user)));
     }
 }

@@ -19,4 +19,21 @@ public interface IUserService {
      * @throws UserException 登录失败
      */
     User userLogin(User user) throws UserException;
+
+    /**
+     * 用户注册
+     *
+     * @param user user
+     * @return 新增后的用户（包含用户ID）
+     * @throws UserException 注册失败
+     */
+    User userSignUp(User user) throws UserException;
+
+    /**
+     * 用户更新
+     *
+     * @param user user
+     * @return 更新后的用户
+     */
+    User userUpdate(User user);
 }

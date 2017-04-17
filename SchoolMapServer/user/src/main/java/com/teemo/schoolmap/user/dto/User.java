@@ -85,4 +85,14 @@ public class User extends BaseDTO{
         this.userExtraInformation = userExtraInformation;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userTypeId=" + userTypeId +
+                ", password='" + password + '\'' +
+                ", userBasisInformation=" + userBasisInformation.toString() +
+                ", userExtraInformation=" + userExtraInformation.toString() +
+                '}';
+    }
 }

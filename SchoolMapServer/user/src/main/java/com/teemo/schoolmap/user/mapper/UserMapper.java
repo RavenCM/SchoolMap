@@ -1,5 +1,6 @@
 package com.teemo.schoolmap.user.mapper;
 
+import com.teemo.schoolmap.common.mybatis.mapper.CommonMapper;
 import com.teemo.schoolmap.user.dto.User;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -10,7 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @description 用户表映射
  */
 @Mapper
-public interface UserMapper {
+public interface UserMapper extends CommonMapper<User> {
 
     /**
      * 用户登录

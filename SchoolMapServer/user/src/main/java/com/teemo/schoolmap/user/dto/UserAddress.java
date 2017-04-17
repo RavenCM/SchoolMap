@@ -15,7 +15,7 @@ import javax.persistence.Table;
  * @description 用户位置信息表
  */
 @Table(name = "sm_user_address")
-public class UserAddress extends BaseDTO{
+public class UserAddress extends BaseDTO {
 
     /**
      * 用户地址信息表ID
@@ -74,5 +74,15 @@ public class UserAddress extends BaseDTO{
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    @Override
+    public String toString() {
+        return "UserAddress{" +
+                "userAddressId=" + userAddressId +
+                ", country='" + country + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                '}';
     }
 }

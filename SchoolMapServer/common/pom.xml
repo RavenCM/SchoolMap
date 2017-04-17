@@ -17,6 +17,14 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.easemob</groupId>
+            <artifactId>rest-java-sdk</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
+
     <!--<build>-->
         <!--<plugins>-->
             <!--<plugin>-->
