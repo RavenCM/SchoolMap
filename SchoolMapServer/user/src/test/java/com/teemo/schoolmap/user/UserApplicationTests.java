@@ -25,6 +25,7 @@ public class UserApplicationTests {
     @Test
     @Transactional
     public void contextLoads() throws Exception {
+
     }
 
 }

@@ -12,6 +12,7 @@ import java.util.List;
  * @name schoolmap-server
  * @description 服务统一返回数据格式
  */
+@Deprecated
 public class ResponseData {
 
     /**

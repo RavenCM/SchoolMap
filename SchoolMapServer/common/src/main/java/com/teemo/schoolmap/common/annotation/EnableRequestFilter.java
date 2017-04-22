@@ -1,7 +1,4 @@
 package com.teemo.schoolmap.common.annotation;
-/**
- * Created by neng.liu@hand-china.com on 2017/3/24.
- */
 
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
@@ -11,7 +8,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author neng.liu@hand-china.com	2017/3/2410:53
+ * @author qingsheng.chen@hand-china.com	2017/4/14 16:15
+ * @version 1.0
+ * @name schoolmap-server
  * @description 启用请求上下文过滤器
  */
 @Retention(RetentionPolicy.RUNTIME)

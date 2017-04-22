@@ -1,11 +1,16 @@
 package com.teemo.schoolmap.common.easemob.config;
 
+import com.teemo.schoolmap.common.easemob.client.UserRestClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
 /**
  * @author qingsheng.chen@hand-china.com	2017/4/14 15:29
  * @version 1.0
  * @name schoolmap-server
  * @description 环信的配置信息
  */
+@Configuration
 public class EasemobConfig {
 
     public static final String domain = "http://a1.easemob.com/";
@@ -39,4 +44,9 @@ public class EasemobConfig {
      * Token 有效期误差
      */
     public static final double errorTime = 1000 * 60 * 5;
+
+    @Bean
+    public UserRestClient userRestClient(){
+        return new UserRestClient();
+    }
 }

@@ -10,20 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
-import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
-import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.teemo.schoolmap.R;
-import com.teemo.schoolmap.common.config.MapConfig;
-import com.teemo.schoolmap.common.uitl.GpsUtil;
-import com.teemo.schoolmap.common.uitl.InternetUtil;
+import com.teemo.schoolmap.application.config.MapConfig;
+import com.teemo.schoolmap.application.uitl.GpsUtil;
+import com.teemo.schoolmap.application.uitl.InternetUtil;
 
 /**
  * @author Teemo
@@ -43,6 +39,7 @@ public class MapFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.i("MapFragment", "onCreateView");
         View parent = inflater.inflate(R.layout.fragment_map, container, false);
         init(parent, savedInstanceState);
         return parent;
@@ -146,8 +143,6 @@ public class MapFragment extends Fragment{
     public void onDestroy() {
         super.onDestroy();
         mapView.onDestroy();
-        aMap = null;
-        uiSettings = null;
     }
 
     @Override

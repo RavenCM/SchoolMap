@@ -91,8 +91,8 @@ public class User extends BaseDTO{
                 "userId=" + userId +
                 ", userTypeId=" + userTypeId +
                 ", password='" + password + '\'' +
-                ", userBasisInformation=" + userBasisInformation.toString() +
-                ", userExtraInformation=" + userExtraInformation.toString() +
+                ", userBasisInformation=" + userBasisInformation +
+                ", userExtraInformation=" + userExtraInformation +
                 '}';
     }
 }

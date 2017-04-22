@@ -5,6 +5,7 @@
     <string name="loading">loading...</string>
     <string name="user_avatar">用户头像</string>
     <string name="email_hint">Please input your email...</string>
+    <string name="password_hint">Please input your password...</string>
     <string name="sign_in_background">sign in background</string>
     <string name="network_not_connected">当前网络不可用</string>
     <string name="gps_not_connected">当前GPS不可用</string>
@@ -21,5 +22,6 @@
     <string name="map">地图</string>
     <string name="find">发现</string>
     <string name="chat">聊天</string>
+    <string name="login">登录</string>
 
 </resources>

@@ -26,26 +26,26 @@ import com.teemo.schoolmap.view.LoadingView;
  * @Date 2017/3/28 20:53
  * @description 正在加载 view 的布局
  */
-public class LoadingViewLayout extends LinearLayout {
+public class LoadingViewWidget extends LinearLayout {
 
     private LoadingView loadingView;
     private ImageView ivShadow;
     private TextView tvLoading;
     private int fallDistance;
 
-    public LoadingViewLayout(Context context) {
+    public LoadingViewWidget(Context context) {
         this(context, null);
     }
 
-    public LoadingViewLayout(Context context, @Nullable AttributeSet attrs) {
+    public LoadingViewWidget(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public LoadingViewLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public LoadingViewWidget(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         this(context, attrs, defStyleAttr, 0);
     }
 
-    public LoadingViewLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public LoadingViewWidget(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
 
     }

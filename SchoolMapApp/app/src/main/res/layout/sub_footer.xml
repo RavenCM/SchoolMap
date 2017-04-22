@@ -1,35 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:layout_height="48dp"
+    android:orientation="vertical"
+    android:paddingBottom="4dp">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/unselected" />
 
-    <TextView
-        android:id="@+id/tv_map"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:drawableTop=""
-        android:gravity="center"
-        android:text="@string/map" />
+        android:baselineAligned="true"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tv_find"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:drawableTop=""
-        android:gravity="center"
-        android:text="@string/find" />
+        <LinearLayout
+            android:id="@+id/ll_map"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_chat"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:drawableTop=""
-        android:gravity="center"
-        android:text="@string/chat" />
+            <ImageView
+                android:id="@+id/iv_map"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@drawable/map_unselected"
+                android:contentDescription="@string/map"
+                android:scaleType="center" />
+
+            <TextView
+                android:id="@id/tv_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/map"
+                android:textColor="@color/unselected" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_find"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_find"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@drawable/found_unselected"
+                android:contentDescription="@string/find"
+                android:scaleType="center" />
+
+            <TextView
+                android:id="@+id/tv_find"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/find"
+                android:textColor="@color/unselected" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_chat"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_chat"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@drawable/chat_unselected"
+                android:contentDescription="@string/chat"
+                android:scaleType="center" />
+
+            <TextView
+                android:id="@+id/tv_chat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chat"
+                android:textColor="@color/unselected" />
+
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

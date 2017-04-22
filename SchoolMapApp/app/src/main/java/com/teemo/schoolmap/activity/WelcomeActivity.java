@@ -13,10 +13,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.teemo.schoolmap.R;
-import com.teemo.schoolmap.common.config.MessageConfig;
-import com.teemo.schoolmap.common.config.WelcomeConfig;
-import com.teemo.schoolmap.common.uitl.ActivityUtil;
-import com.teemo.schoolmap.common.uitl.BitmapUtil;
+import com.teemo.schoolmap.application.config.MessageConfig;
+import com.teemo.schoolmap.application.config.WelcomeConfig;
+import com.teemo.schoolmap.application.uitl.ActivityUtil;
+import com.teemo.schoolmap.application.uitl.BitmapUtil;
 
 
 import java.util.Timer;

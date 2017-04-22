@@ -1,7 +1,6 @@
-package com.teemo.schoolmap.common.uitl;
+package com.teemo.schoolmap.application.uitl;
 
 import android.app.Activity;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;

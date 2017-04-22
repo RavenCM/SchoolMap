@@ -1,4 +1,4 @@
-package com.teemo.schoolmap.common.config;
+package com.teemo.schoolmap.application.config;
 
 import com.teemo.schoolmap.R;
 
@@ -12,7 +12,7 @@ public class WelcomeConfig {
     /**
      * 展示3秒
      */
-    public static final int SHOW_TIME = 3;
+    public static final int SHOW_TIME = 1;
     /**
      * 壁纸数量
      */

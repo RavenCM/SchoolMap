@@ -1,5 +1,7 @@
 package com.teemo.schoolmap.common.easemob.annotation;
 
+import com.teemo.schoolmap.common.easemob.config.EasemobConfig;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
 import java.lang.annotation.ElementType;
@@ -15,6 +17,6 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-@ServletComponentScan("com.teemo.schoolmap.common.easemob")
+@ImportAutoConfiguration(EasemobConfig.class)
 public @interface EnableEasemob {
 }

@@ -12,3 +12,5 @@ logging:
     com.teemo.schoolmap: debug
 mybatis:
   mapper-locations: classpath*:com/teemo/schoolmap/**/*Mapper.xml
+server:
+  port: 8081

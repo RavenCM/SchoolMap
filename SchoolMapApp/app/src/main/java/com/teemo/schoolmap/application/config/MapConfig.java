@@ -1,4 +1,4 @@
-package com.teemo.schoolmap.common.config;
+package com.teemo.schoolmap.application.config;
 
 import com.amap.api.maps.model.MyLocationStyle;
 
