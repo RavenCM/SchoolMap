@@ -58,6 +58,9 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         Bitmap bitmap = BitmapUtil.getFitSampleBitmap(getResources(), WelcomeConfig.wallpaperIdList[wallPaperNo], requireWidth, requireHeight);
         BitmapDrawable drawable = new BitmapDrawable(this.getResources(), bitmap);
         ivWelcome.setImageDrawable(drawable);
+
+        // 初始化 EaseUI
+
     }
 
     /**

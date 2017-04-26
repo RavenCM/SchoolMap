@@ -23,5 +23,9 @@
     <string name="find">发现</string>
     <string name="chat">聊天</string>
     <string name="login">登录</string>
+    <string name="logging_in">正在登录......</string>
+    <string name="friend">好友</string>
+    <string name="icon">icon</string>
+    <string name="selection">输入查询用户的用户名或者邮箱</string>
 
 </resources>

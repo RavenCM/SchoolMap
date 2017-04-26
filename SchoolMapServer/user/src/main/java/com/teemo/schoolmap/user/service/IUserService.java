@@ -3,6 +3,8 @@ package com.teemo.schoolmap.user.service;
 import com.teemo.schoolmap.user.dto.User;
 import com.teemo.schoolmap.user.exception.UserException;
 
+import java.util.List;
+
 /**
  * @author qingsheng.chen@hand-china.com	2017/4/13 15:04
  * @version 1.0
@@ -36,4 +38,20 @@ public interface IUserService {
      * @return 更新后的用户
      */
     User userUpdate(User user);
+
+    /**
+     * 获取多个用户
+     *
+     * @param userId userId
+     * @return 多个用户
+     */
+    List<User> userSelect(List<Integer> userId);
+
+    /**
+     * 获取多个用户
+     *
+     * @param userInfo userInfo
+     * @return 多个用户
+     */
+    List<User> userSelectByUserInfo(String userInfo);
 }

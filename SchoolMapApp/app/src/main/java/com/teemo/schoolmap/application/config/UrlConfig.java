@@ -18,7 +18,7 @@ public class UrlConfig {
     /**
      * 服务器 IP
      */
-    private static final String IP = "192.168.1.102";   // 10.211.98.170
+    private static final String IP = "10.211.98.170";   // 10.211.98.170
 
     /**
      * 用户服务端口
@@ -26,7 +26,12 @@ public class UrlConfig {
     private static final String USER_PORT = "8081";
 
     /**
-     * 用户登录 URL
+     * 单用户 URL
      */
-    public static final String USER_LOGIN = PROTOCOL + IP + ":" + USER_PORT + SPILT + "api/user";
+    public static final String USER = PROTOCOL + IP + ":" + USER_PORT + SPILT + "api/user";
+
+    /**
+     * 批量用户 URL
+     */
+    public static final String USERS = PROTOCOL + IP + ":" + USER_PORT + SPILT + "api/users";
 }

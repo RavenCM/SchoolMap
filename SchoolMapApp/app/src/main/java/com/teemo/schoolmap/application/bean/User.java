@@ -32,7 +32,7 @@ public class User extends BaseDTO{
 
     private UserExtraInformation userExtraInformation;
 
-    private User() {
+    public User() {
     }
 
     public static User getInstance() {

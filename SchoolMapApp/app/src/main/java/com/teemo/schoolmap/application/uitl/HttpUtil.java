@@ -1,5 +1,6 @@
 package com.teemo.schoolmap.application.uitl;
 
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.Call;
@@ -20,7 +21,8 @@ public class HttpUtil {
 
     /**
      * 返回 GET 请求的 CALL
-     * @param url url
+     *
+     * @param url         url
      * @param argumentMap argumentMap
      * @return CALL
      */
@@ -32,8 +34,15 @@ public class HttpUtil {
             } else {
                 parameterLink.append("&");
             }
-            if (argumentMap.get(key) != null && !"".equals(argumentMap.get(key))) {
-                parameterLink.append(key).append("=").append(argumentMap.get(key));
+            Object value = argumentMap.get(key);
+            if (value != null && !"".equals(value)) {
+                if (value instanceof List) {
+                    for (Object v : (List) value) {
+                        parameterLink.append(key).append("=").append(v);
+                    }
+                } else {
+                    parameterLink.append(key).append("=").append(argumentMap.get(key));
+                }
             }
         }
         Request request = new Request.Builder().get().url(parameterLink != null ? url + parameterLink.toString() : url).build();

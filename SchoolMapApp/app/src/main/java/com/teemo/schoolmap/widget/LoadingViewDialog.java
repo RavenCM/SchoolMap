@@ -19,9 +19,11 @@ public class LoadingViewDialog {
         AlertDialog.Builder builder = new AlertDialog.Builder(context).setView(R.layout.dialog_loading);
         AlertDialog dialog = builder.create();
         Window window = dialog.getWindow();
-        WindowManager.LayoutParams lp = window.getAttributes();
-        lp.alpha = 0.8f;
-        window.setAttributes(lp);
+        WindowManager.LayoutParams lp = window != null ? window.getAttributes() : null;
+        if (lp != null) {
+            lp.alpha = 0.8f;
+            window.setAttributes(lp);
+        }
         return dialog;
     }
 }

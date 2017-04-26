@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
+
 import java.util.List;
 
 /**
@@ -41,6 +42,7 @@ public class SchoolMapApplication extends Application {
         }
         //初始化
         EMClient.getInstance().init(this, options);
+        //EaseUI.getInstance().init(this, null);
         //在做打包混淆时，关闭debug模式，避免消耗不必要的资源
         EMClient.getInstance().setDebugMode(true);
         Log.i("Easemob", "End Init");

@@ -119,7 +119,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             argumentMap.put("password", Md5Util.sign(password));
             Message message = handler.obtainMessage();
             try {
-                Response response = HttpUtil.getCall(UrlConfig.USER_LOGIN, argumentMap).execute();
+                Response response = HttpUtil.getCall(UrlConfig.USER, argumentMap).execute();
                 if (200 == response.code()) {
                     // 登录成功
                     SharedPreferencesUtil.writeUserInfo(activity, new ObjectMapper().readValue(response.body().string(), User.class));

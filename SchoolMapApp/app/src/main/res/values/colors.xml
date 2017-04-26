@@ -11,4 +11,5 @@
     <color name="unselected">#BFBFBF</color>
     <color name="selected">#1AFA29</color>
     <color name="colorLogInButton">#00ffee</color>
+    <color name="colorMenu">#FF2e2e2e</color>
 </resources>

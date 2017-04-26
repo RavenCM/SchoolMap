@@ -15,6 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author qingsheng.chen@hand-china.com	2017/4/13 15:12
  * @version 1.0
@@ -48,9 +51,9 @@ public class UserServiceImpl implements IUserService {
      */
     @Override
     public User userLogin(User user) throws UserException {
-        Assert.notNull(user.getUserBasisInformation().getEmail(), CommonUtil.buildAssertNotNullMessage(user.getUserBasisInformation().getEmail(), "userLogin"));
-        Assert.notNull(user.getPassword(), CommonUtil.buildAssertNotNullMessage(user.getPassword(), "userLogin"));
-        user = userMapper.userLogin(user);
+        Assert.notNull(user.getUserBasisInformation().getEmail(), CommonUtil.buildAssertNotNullMessage(user.getUserBasisInformation().getEmail(), "userSelect"));
+        Assert.notNull(user.getPassword(), CommonUtil.buildAssertNotNullMessage(user.getPassword(), "userSelect"));
+        user = userMapper.userSelect(user);
         if (user.getUserId() != null) {
             // 用户名和密码正确，在客户端完成环信中登录
             return user;
@@ -115,5 +118,33 @@ public class UserServiceImpl implements IUserService {
             throw new UserException("用户信息更新失败！" + user.toString());
         }
         return user;
+    }
+
+    /**
+     * 获取多个用户
+     *
+     * @param userId userId
+     * @return 多个用户
+     */
+    @Override
+    public List<User> userSelect(List<Integer> userId) {
+        List<User> userList = new ArrayList<>();
+        userId.forEach(id -> {
+            User user = new User();
+            user.setUserId(id);
+            userList.add(userMapper.userSelect(user));
+        });
+        return userList;
+    }
+
+    /**
+     * 获取多个用户
+     *
+     * @param userInfo userInfo
+     * @return 多个用户
+     */
+    @Override
+    public List<User> userSelectByUserInfo(String userInfo) {
+        return userMapper.selectByUserInfo(userInfo);
     }
 }
