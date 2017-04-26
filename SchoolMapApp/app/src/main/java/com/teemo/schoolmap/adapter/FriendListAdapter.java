@@ -62,7 +62,7 @@ public class FriendListAdapter extends BaseAdapter {
             viewHolder.civAvatar = (CircleImageView) convertView.findViewById(R.id.civ_avatar);
             viewHolder.tvUsername = (TextView) convertView.findViewById(R.id.tv_username);
             viewHolder.tvSignature = (TextView) convertView.findViewById(R.id.tv_signature);
-            convertView.setTag(convertView);
+            convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }

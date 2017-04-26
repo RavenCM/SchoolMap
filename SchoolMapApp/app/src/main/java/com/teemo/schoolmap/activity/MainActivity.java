@@ -1,5 +1,6 @@
 package com.teemo.schoolmap.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -35,6 +36,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private ImageView ivMap;
     private ImageView ivFind;
     private ImageView ivChat;
+    private int index;
 
     private static Fragment[] fragments = new Fragment[]{new MapFragment(), new FindFragment(), new ChatFragment()};
 
@@ -45,11 +47,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         ActivityUtil.noTitle(this);
         setContentView(R.layout.acvitity_main);
-
         init();
     }
 
     private void init() {
+        Intent intent = getIntent();
+        index = intent != null ? intent.getIntExtra("index", MainConfig.DEFAULT_PAGE_INDEX) : MainConfig.DEFAULT_PAGE_INDEX;
+
         llMap = (LinearLayout) findViewById(R.id.ll_map);
         llFind = (LinearLayout) findViewById(R.id.ll_find);
         llChat = (LinearLayout) findViewById(R.id.ll_chat);
@@ -64,7 +68,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         llFind.setOnClickListener(this);
         llChat.setOnClickListener(this);
 
-        selectTab(MainConfig.DEFAULT_PAGE_INDEX);
+        selectTab(index);
     }
 
     @Override
@@ -105,8 +109,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private void selectTab(int index) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        if (!isInit){
-            for (Fragment fragment : fragments){
+        if (!isInit) {
+            for (Fragment fragment : fragments) {
                 fragmentTransaction.add(R.id.fl_content, fragment);
             }
             isInit = true;

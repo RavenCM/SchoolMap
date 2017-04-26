@@ -167,6 +167,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener, Adap
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Log.i("onItemClick", position + "");
         startActivity(new Intent(ChatFragment.this.getContext(), ((Menu) menuListAdapter.getItem(position)).getClazz()));
+        ChatFragment.this.getActivity().finish();
     }
 
     private static class ChatFragmentHandler extends Handler {
@@ -198,6 +199,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener, Adap
                     ivLoggingIn.setVisibility(View.GONE);
                     dialog.dismiss();
                     lvFriend.setAdapter(friendListAdapter);
+                    friendListAdapter.notifyDataSetChanged();
                     Toast.makeText(context, "获取用户列表成功！", Toast.LENGTH_SHORT).show();
                     break;
                 case GET_USER_FRIEND_EMPTY:

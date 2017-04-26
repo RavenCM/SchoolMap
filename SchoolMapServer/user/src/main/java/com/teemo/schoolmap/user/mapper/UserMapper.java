@@ -29,5 +29,5 @@ public interface UserMapper extends CommonMapper<User> {
      * @param userInfo userInfo
      * @return 多个用户
      */
-    List<User> selectByUserInfo(String userInfo);
+    List<User> selectByUserInfo(@Param("userInfo") String userInfo);
 }
