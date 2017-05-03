@@ -18,7 +18,7 @@ public class UrlConfig {
     /**
      * 服务器 IP
      */
-    private static final String IP = "10.211.98.170";   // 10.211.98.170
+    private static final String IP = "192.168.1.104";   // 10.211.98.170
 
     /**
      * 用户服务端口

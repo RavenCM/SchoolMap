@@ -8,5 +8,5 @@ package com.teemo.schoolmap.application.config;
  */
 public class MainConfig {
 
-    public static final int DEFAULT_PAGE_INDEX = 2;
+    public static final int DEFAULT_PAGE_INDEX = 0;
 }

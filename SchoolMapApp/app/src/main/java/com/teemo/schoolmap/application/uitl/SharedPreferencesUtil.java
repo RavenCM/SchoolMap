@@ -78,7 +78,7 @@ public class SharedPreferencesUtil {
                 editor.putInt("userExtraInformation.userAddress.isEnable", user.getUserExtraInformation().getUserAddress().getIsEnable());
             }
         }
-        editor.apply();
+        editor.commit();
     }
 
     public static User readUserInfo(Activity activity) {

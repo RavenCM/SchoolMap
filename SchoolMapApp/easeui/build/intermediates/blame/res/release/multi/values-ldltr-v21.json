@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "D:\\Project\\AndroidStudio\\SchoolMap-WorkSpace\\SchoolMap\\SchoolMapApp\\easeui\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-ldltr-v21\\values-ldltr-v21.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 112,
+                    "endOffset": 163
+                },
+                "from": {
+                    "file": "C:\\Users\\Teemo\\.android\\build-cache\\f718f140f2d4b28f69be0105cc518dc79f9eba0a\\output\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 112,
+                        "endOffset": 163
+                    }
+                }
+            }
+        ]
+    }
+]

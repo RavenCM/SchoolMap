@@ -88,6 +88,8 @@
         <activity android:name=".activity.SignInActivity" />
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.FindFriendActivity" />
+        <activity android:name=".activity.ChatActivity" />
+        <activity android:name=".activity.RecodeActivity" />
     </application>
 
 </manifest>

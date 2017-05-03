@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "D:\\Project\\AndroidStudio\\SchoolMap-WorkSpace\\SchoolMap\\SchoolMapApp\\easeui\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v13\\values-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 58,
+                    "endOffset": 109
+                },
+                "from": {
+                    "file": "C:\\Users\\Teemo\\.android\\build-cache\\f718f140f2d4b28f69be0105cc518dc79f9eba0a\\output\\res\\values-v13\\values-v13.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 58,
+                        "endOffset": 109
+                    }
+                }
+            }
+        ]
+    }
+]

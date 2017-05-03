@@ -20,7 +20,6 @@ import android.widget.Toast;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hyphenate.chat.EMClient;
-import com.hyphenate.exceptions.HyphenateException;
 import com.teemo.schoolmap.R;
 import com.teemo.schoolmap.adapter.FriendListAdapter;
 import com.teemo.schoolmap.application.bean.User;

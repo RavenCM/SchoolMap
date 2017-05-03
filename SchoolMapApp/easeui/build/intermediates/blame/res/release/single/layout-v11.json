@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "D:\\Project\\AndroidStudio\\SchoolMap-WorkSpace\\SchoolMap\\SchoolMapApp\\easeui\\build\\intermediates\\res\\merged\\release\\layout-v11\\notification_media_action.xml",
+        "source": "C:\\Users\\Teemo\\.android\\build-cache\\f718f140f2d4b28f69be0105cc518dc79f9eba0a\\output\\res\\layout-v11\\notification_media_action.xml"
+    },
+    {
+        "merged": "D:\\Project\\AndroidStudio\\SchoolMap-WorkSpace\\SchoolMap\\SchoolMapApp\\easeui\\build\\intermediates\\res\\merged\\release\\layout-v11\\notification_template_big_media_narrow_custom.xml",
+        "source": "C:\\Users\\Teemo\\.android\\build-cache\\f718f140f2d4b28f69be0105cc518dc79f9eba0a\\output\\res\\layout-v11\\notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "D:\\Project\\AndroidStudio\\SchoolMap-WorkSpace\\SchoolMap\\SchoolMapApp\\easeui\\build\\intermediates\\res\\merged\\release\\layout-v11\\notification_template_big_media.xml",
+        "source": "C:\\Users\\Teemo\\.android\\build-cache\\f718f140f2d4b28f69be0105cc518dc79f9eba0a\\output\\res\\layout-v11\\notification_template_big_media.xml"
+    },
+    {
+        "merged": "D:\\Project\\AndroidStudio\\SchoolMap-WorkSpace\\SchoolMap\\SchoolMapApp\\easeui\\build\\intermediates\\res\\merged\\release\\layout-v11\\notification_template_big_media_narrow.xml",
+        "source": "C:\\Users\\Teemo\\.android\\build-cache\\f718f140f2d4b28f69be0105cc518dc79f9eba0a\\output\\res\\layout-v11\\notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "D:\\Project\\AndroidStudio\\SchoolMap-WorkSpace\\SchoolMap\\SchoolMapApp\\easeui\\build\\intermediates\\res\\merged\\release\\layout-v11\\notification_media_cancel_action.xml",
+        "source": "C:\\Users\\Teemo\\.android\\build-cache\\f718f140f2d4b28f69be0105cc518dc79f9eba0a\\output\\res\\layout-v11\\notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "D:\\Project\\AndroidStudio\\SchoolMap-WorkSpace\\SchoolMap\\SchoolMapApp\\easeui\\build\\intermediates\\res\\merged\\release\\layout-v11\\notification_template_big_media_custom.xml",
+        "source": "C:\\Users\\Teemo\\.android\\build-cache\\f718f140f2d4b28f69be0105cc518dc79f9eba0a\\output\\res\\layout-v11\\notification_template_big_media_custom.xml"
+    }
+]

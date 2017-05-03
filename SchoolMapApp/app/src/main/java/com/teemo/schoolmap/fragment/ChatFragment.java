@@ -24,8 +24,11 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.easeui.EaseConstant;
 import com.teemo.schoolmap.R;
+import com.teemo.schoolmap.activity.ChatActivity;
 import com.teemo.schoolmap.activity.FindFriendActivity;
+import com.teemo.schoolmap.activity.RecodeActivity;
 import com.teemo.schoolmap.activity.SignInActivity;
 import com.teemo.schoolmap.adapter.FriendListAdapter;
 import com.teemo.schoolmap.adapter.MenuListAdapter;
@@ -88,9 +91,12 @@ public class ChatFragment extends Fragment implements View.OnClickListener, Adap
 
         List<Menu> menuList = new ArrayList<>();
         menuList.add(new Menu(R.drawable.add_user, "添加好友", FindFriendActivity.class));
+        menuList.add(new Menu(R.drawable.recode, "消息记录", RecodeActivity.class));
         menuListAdapter = new MenuListAdapter(this.getContext(), menuList);
         lvMenu.setOnItemClickListener(this);
         lvMenu.setAdapter(menuListAdapter);
+
+        lvFriend.setOnItemClickListener(this);
 
         ibMore.setOnClickListener(this);
         login();
@@ -165,9 +171,23 @@ public class ChatFragment extends Fragment implements View.OnClickListener, Adap
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.i("onItemClick", position + "");
-        startActivity(new Intent(ChatFragment.this.getContext(), ((Menu) menuListAdapter.getItem(position)).getClazz()));
-        ChatFragment.this.getActivity().finish();
+        switch (parent.getId()) {
+            case R.id.lv_menu:
+                Log.i("onItemClick", position + "");
+                startActivity(new Intent(ChatFragment.this.getContext(), ((Menu) menuListAdapter.getItem(position)).getClazz()));
+                ChatFragment.this.getActivity().finish();
+                break;
+            case R.id.lv_friend:
+                //传入参数
+                Bundle args = new Bundle();
+                args.putInt(EaseConstant.EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_SINGLE);
+                args.putString(EaseConstant.EXTRA_USER_ID, String.valueOf(((User) friendListAdapter.getItem(position)).getUserId()));
+
+                Intent intent = new Intent(ChatFragment.this.getContext(), ChatActivity.class);
+                intent.putExtras(args);
+                startActivity(intent);
+                break;
+        }
     }
 
     private static class ChatFragmentHandler extends Handler {
