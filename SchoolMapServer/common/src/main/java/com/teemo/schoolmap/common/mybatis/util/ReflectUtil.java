@@ -63,7 +63,7 @@ public class ReflectUtil {
                     dtoMetaInfo.setPrimaryKey(new Pair<>(columnName, field));
                 }
                 if (field.isAnnotationPresent(Condition.class)) {
-                    dtoMetaInfo.getConditions().put(new Pair<>(columnName, AnnotationUtils.getAnnotation(field, Condition.class).operator()), field);
+                    dtoMetaInfo.getConditions().put(new Pair<>(ContentUtil.camelToUnderline(columnName), AnnotationUtils.getAnnotation(field, Condition.class).operator()), field);
                 }
             }
         });

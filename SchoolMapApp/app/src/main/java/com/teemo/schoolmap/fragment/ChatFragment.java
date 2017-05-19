@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hyphenate.EMCallBack;
+import com.hyphenate.EMContactListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.EaseConstant;
 import com.teemo.schoolmap.R;
@@ -52,7 +53,7 @@ import okhttp3.Response;
  * @Date 2017/4/17 16:21
  * @description 聊天界面 Fragment
  */
-public class ChatFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class ChatFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener, EMContactListener {
     private RelativeLayout rlChat;
     private ListView lvMenu;
     private ImageButton ibMore;
@@ -97,7 +98,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener, Adap
         lvMenu.setAdapter(menuListAdapter);
 
         lvFriend.setOnItemClickListener(this);
-
+        EMClient.getInstance().contactManager().setContactListener(this);
         ibMore.setOnClickListener(this);
         login();
     }
@@ -130,6 +131,12 @@ public class ChatFragment extends Fragment implements View.OnClickListener, Adap
     }
 
     private void easemobLogin() {
+        if (EMClient.getInstance().isConnected()){
+            Message message = handler.obtainMessage();
+            message.what = LOGIN_SUCCESS;
+            handler.sendMessage(message);
+            return;
+        }
         dialog.show();
         EMClient.getInstance().login(String.valueOf(User.getInstance().getUserId()), User.getInstance().getPassword(), new EMCallBack() {
             @Override
@@ -182,7 +189,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener, Adap
                 Bundle args = new Bundle();
                 args.putInt(EaseConstant.EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_SINGLE);
                 args.putString(EaseConstant.EXTRA_USER_ID, String.valueOf(((User) friendListAdapter.getItem(position)).getUserId()));
-
+                args.putString(EaseConstant.EXTRA_CHAT_ROOM_NAME, String.valueOf(((User) friendListAdapter.getItem(position)).getUserBasisInformation().getUsername()));
                 Intent intent = new Intent(ChatFragment.this.getContext(), ChatActivity.class);
                 intent.putExtras(args);
                 startActivity(intent);
@@ -205,7 +212,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener, Adap
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case LOGIN_SUCCESS:
-                    Toast.makeText(context, "登录成功！", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "登录成功！", Toast.LENGTH_SHORT).show();
                     new GetUserFriendThread(context).start();
                     break;
                 case LOGIN_ERROR:
@@ -220,7 +227,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener, Adap
                     dialog.dismiss();
                     lvFriend.setAdapter(friendListAdapter);
                     friendListAdapter.notifyDataSetChanged();
-                    Toast.makeText(context, "获取用户列表成功！", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "获取用户列表成功！", Toast.LENGTH_SHORT).show();
                     break;
                 case GET_USER_FRIEND_EMPTY:
                     dialog.dismiss();
@@ -281,5 +288,33 @@ public class ChatFragment extends Fragment implements View.OnClickListener, Adap
             }
             handler.sendMessage(message);
         }
+    }
+
+    @Override
+    public void onContactAdded(String s) {
+        // 好友请求被同意
+        Toast.makeText(this.getContext(), s + "同意了好友请求！", Toast.LENGTH_SHORT).show();
+        new GetUserFriendThread(this.getContext()).start();
+    }
+
+    @Override
+    public void onContactDeleted(String s) {
+        // 被删除时回调此方法
+        Toast.makeText(this.getContext(), s + "与你解除了好友关系！", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onContactInvited(String s, String s1) {
+        Toast.makeText(this.getContext(), s + "请求添加好友！", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onFriendRequestAccepted(String s) {
+
+    }
+
+    @Override
+    public void onFriendRequestDeclined(String s) {
+
     }
 }

@@ -93,8 +93,13 @@ public class CommonMapperImpl<T> extends SqlSessionDaoSupport implements CommonM
         List<Map<String, Object>> result = getSqlSession().selectList(SELECT, argumentMap);
         if (result.isEmpty()) return null;
         List<T> list = new ArrayList<>();
-        result.forEach(item ->
-                list.add((T) ReflectUtil.fillingDto(dto, item))
+        result.forEach(item -> {
+                    try {
+                        list.add((T) ReflectUtil.fillingDto(dto.getClass().newInstance(), item));
+                    } catch (InstantiationException | IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
         );
         return list;
     }
@@ -109,7 +114,7 @@ public class CommonMapperImpl<T> extends SqlSessionDaoSupport implements CommonM
     public int update(T dto) {
         Assert.notNull(dto, CommonUtil.buildAssertNotNullMessage(dto, "update"));
         int cnt = getSqlSession().update(UPDATE, SqlArgumentUtil.prepareUpdateArgument(dto, false));
-        if (dto instanceof BaseDTO){
+        if (dto instanceof BaseDTO) {
             ((BaseDTO) dto).setObjectVersionNumber(((BaseDTO) dto).getObjectVersionNumber() + 1);
         }
         return cnt;
@@ -125,7 +130,7 @@ public class CommonMapperImpl<T> extends SqlSessionDaoSupport implements CommonM
     public int updateSelective(T dto) {
         Assert.notNull(dto, CommonUtil.buildAssertNotNullMessage(dto, "updateSelective"));
         int cnt = getSqlSession().update(UPDATE, SqlArgumentUtil.prepareUpdateArgument(dto, true));
-        if (dto instanceof BaseDTO){
+        if (dto instanceof BaseDTO) {
             ((BaseDTO) dto).setObjectVersionNumber(((BaseDTO) dto).getObjectVersionNumber() + 1);
         }
         return cnt;

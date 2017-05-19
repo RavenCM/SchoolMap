@@ -1,5 +1,9 @@
 package com.teemo.schoolmap.common.mybatis.component;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.teemo.schoolmap.common.mybatis.annotation.Condition;
+
 import javax.persistence.Column;
 import java.sql.Timestamp;
 
@@ -14,51 +18,59 @@ public class BaseDTO {
      * 记录版本号
      */
     @Column
-    protected int objectVersionNumber;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    protected Integer objectVersionNumber;
 
     /**
      * 创建人ID
      */
     @Column
-    protected int createdBy;
+    @Condition
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    protected Integer createdBy;
 
     /**
      * 创建日期
      */
     @Column
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     protected Timestamp creationDate;
 
     /**
      * 最后更新人ID
      */
     @Column
-    protected int lastUpdatedBy;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    protected Integer lastUpdatedBy;
 
     /**
      * 最后更新日期
      */
     @Column
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     protected Timestamp lastUpdatedDate;
 
     /**
      * 是否启用
      */
     @Column
-    protected int isEnable;
+    @Condition
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    protected Integer isEnable;
 
-    public int getObjectVersionNumber() {
+    public Integer getObjectVersionNumber() {
         return objectVersionNumber;
     }
 
-    public void setObjectVersionNumber(int objectVersionNumber) {
+    public void setObjectVersionNumber(Integer objectVersionNumber) {
         this.objectVersionNumber = objectVersionNumber;
     }
 
-    public int getCreatedBy() {
+    public Integer getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(int createdBy) {
+    public void setCreatedBy(Integer createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -70,11 +82,11 @@ public class BaseDTO {
         this.creationDate = creationDate;
     }
 
-    public int getLastUpdatedBy() {
+    public Integer getLastUpdatedBy() {
         return lastUpdatedBy;
     }
 
-    public void setLastUpdatedBy(int lastUpdatedBy) {
+    public void setLastUpdatedBy(Integer lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
     }
 
@@ -86,12 +98,11 @@ public class BaseDTO {
         this.lastUpdatedDate = lastUpdatedDate;
     }
 
-    public int getIsEnable() {
+    public Integer getIsEnable() {
         return isEnable;
     }
 
-    public void setIsEnable(int isEnable) {
+    public void setIsEnable(Integer isEnable) {
         this.isEnable = isEnable;
     }
-
 }

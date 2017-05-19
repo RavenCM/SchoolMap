@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rl_chat"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:descendantFocusability="blocksDescendants">
+    android:layout_height="match_parent">
 
     <include
         android:id="@+id/i_header"
@@ -14,7 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_friend"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:descendantFocusability="blocksDescendants">
 
         <ImageView
             android:id="@+id/iv_login"

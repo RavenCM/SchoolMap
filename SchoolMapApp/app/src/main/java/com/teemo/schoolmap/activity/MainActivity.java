@@ -11,13 +11,17 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.hyphenate.EMContactListener;
+import com.hyphenate.chat.EMClient;
 import com.teemo.schoolmap.R;
 import com.teemo.schoolmap.application.config.MainConfig;
 import com.teemo.schoolmap.application.uitl.ActivityUtil;
 import com.teemo.schoolmap.fragment.ChatFragment;
 import com.teemo.schoolmap.fragment.FindFragment;
 import com.teemo.schoolmap.fragment.MapFragment;
+import com.teemo.schoolmap.fragment.OldSDKMapFragment;
 
 /**
  * @author Teemo
@@ -38,6 +42,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private ImageView ivChat;
     private int index;
 
+    // fragment
     private static Fragment[] fragments = new Fragment[]{new MapFragment(), new FindFragment(), new ChatFragment()};
 
     private boolean isInit = false;

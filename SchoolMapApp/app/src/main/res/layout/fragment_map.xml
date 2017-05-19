@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include
+        android:id="@+id/i_header"
+        layout="@layout/sub_header" />
 
     <com.amap.api.maps.MapView
         android:id="@+id/mp_main"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-    </com.amap.api.maps.MapView>
+        android:layout_height="match_parent"
+        android:layout_below="@id/i_header" />
 
-</LinearLayout>
+    <ListView
+        android:id="@+id/lv_menu"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/i_header"
+        android:visibility="gone" />
+
+</RelativeLayout>

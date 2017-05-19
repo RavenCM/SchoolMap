@@ -2,8 +2,6 @@ package com.teemo.schoolmap.user.controller;
 
 import com.teemo.schoolmap.user.dto.User;
 import com.teemo.schoolmap.user.service.IUserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +17,6 @@ import java.util.List;
  * @name schoolmap-server
  * @description 用户服务控制器
  */
-@Api(value = "用户", description = "用户")
 @RestController
 @RequestMapping("api")
 public class UserController {
@@ -35,7 +32,6 @@ public class UserController {
      * @param user user
      * @return 登录结果
      */
-    @ApiOperation(value = "通过邮箱和密码查询用户", notes = "获取单个用户")
     @GetMapping("user")
     public ResponseEntity<User> selectUser(User user) {
         // 登录

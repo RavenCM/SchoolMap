@@ -16,7 +16,7 @@ public class RequestUtil {
      */
     public int getUserId() {
         try {
-            return Integer.parseInt(RequestFilter.requestHolder.get().getHeader("userId"));
+            return Integer.parseInt(RequestFilter.requestHolder.get().getHeader("userid"));
         } catch (Exception e){
             throw new RuntimeException("No userId found in request.");
         }

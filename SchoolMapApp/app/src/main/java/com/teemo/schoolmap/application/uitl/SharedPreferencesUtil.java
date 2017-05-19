@@ -79,6 +79,7 @@ public class SharedPreferencesUtil {
             }
         }
         editor.commit();
+        readUserInfo(activity);
     }
 
     public static User readUserInfo(Activity activity) {
