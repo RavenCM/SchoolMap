@@ -92,6 +92,8 @@
         <activity android:name=".activity.RecodeActivity" />
         <activity android:name=".activity.WeatherActivity" />
         <activity android:name=".activity.PoiActivity" />
+        <activity android:name=".activity.NaviActivity" />
+        <activity android:name=".activity.PoisAcitvity" />
     </application>
 
 </manifest>

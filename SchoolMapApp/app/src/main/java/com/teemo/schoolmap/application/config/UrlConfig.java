@@ -1,5 +1,7 @@
 package com.teemo.schoolmap.application.config;
 
+import com.teemo.schoolmap.application.bean.User;
+
 /**
  * @author Teemo
  * @version 1.0
@@ -36,4 +38,8 @@ public class UrlConfig {
     public static final String USERS = PROTOCOL + IP + ":" + USER_PORT + SPILT + "api/users";
 
     public static final String POI = PROTOCOL + IP + ":" + USER_PORT + SPILT + "api/poi";
+
+    public static final String MY_POI = PROTOCOL + IP + ":" + USER_PORT + SPILT + "api/poi/" + User.getInstance().getUserId();
+
+    public static final String CANCEL_POI = PROTOCOL + IP + ":" + USER_PORT + SPILT + "api/poi/" + User.getInstance().getUserId() + SPILT;
 }

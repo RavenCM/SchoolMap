@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -49,8 +50,18 @@ public class PoiActivity extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         final Poi poi = new Poi();
-        poi.setTitle(etTitle.getText().toString().trim());
-        poi.setContent(etContent.getText().toString().trim());
+        String title = etTitle.getText().toString().trim();
+        String content = etContent.getText().toString().trim();
+        if ("".equals(title)){
+            Toast.makeText(PoiActivity.this, "标题不能为空", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if ("".equals(content)){
+            Toast.makeText(PoiActivity.this, "内容不能为空", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        poi.setTitle(title);
+        poi.setContent(content);
         poi.setLatitude(getIntent().getDoubleExtra("latitude", 0));
         poi.setLongitude(getIntent().getDoubleExtra("longitude", 0));
         new Thread(new Runnable() {
@@ -74,5 +85,13 @@ public class PoiActivity extends AppCompatActivity implements View.OnClickListen
                 }
             }
         }).start();
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        }
+        return false;
     }
 }

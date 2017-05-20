@@ -12,4 +12,7 @@
     <color name="selected">#1AFA29</color>
     <color name="colorLogInButton">#00ffee</color>
     <color name="colorMenu">#FF2e2e2e</color>
+    <color name="colorValid">#22ff00</color>
+    <color name="colorInvalid">#ff1500</color>
+    <color name="colorBtnSelect">#0088FF</color>
 </resources>

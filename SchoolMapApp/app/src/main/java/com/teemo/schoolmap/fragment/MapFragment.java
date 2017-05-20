@@ -37,7 +37,9 @@ import com.amap.api.maps.model.MyLocationStyle;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.teemo.schoolmap.R;
+import com.teemo.schoolmap.activity.NaviActivity;
 import com.teemo.schoolmap.activity.PoiActivity;
+import com.teemo.schoolmap.activity.PoisAcitvity;
 import com.teemo.schoolmap.activity.WeatherActivity;
 import com.teemo.schoolmap.adapter.MenuListAdapter;
 import com.teemo.schoolmap.application.bean.Menu;
@@ -112,6 +114,7 @@ public class MapFragment extends Fragment implements AdapterView.OnItemClickList
             List<Menu> menuList = new ArrayList<>();
             menuList.add(new Menu(R.drawable.weather, "查看天气", WeatherActivity.class));
             menuList.add(new Menu(R.drawable.add, "发布事件", PoiActivity.class));
+            menuList.add(new Menu(R.drawable.poi, "我的事件", PoisAcitvity.class));
             menuListAdapter = new MenuListAdapter(this.getContext(), menuList);
             lvMenu.setOnItemClickListener(this);
             lvMenu.setAdapter(menuListAdapter);
@@ -157,7 +160,7 @@ public class MapFragment extends Fragment implements AdapterView.OnItemClickList
                         ObjectMapper mapper = new ObjectMapper();
                         JavaType javaType = mapper.getTypeFactory().constructParametricType(List.class, Poi.class);
                         poiList = mapper.readValue(response.body().string(), javaType);
-                        for (Poi poi : poiList){
+                        for (Poi poi : poiList) {
                             LatLng latLng = new LatLng(poi.getLatitude(), poi.getLongitude());
                             Marker marker = aMap.addMarker(new MarkerOptions().position(latLng).title(poi.getTitle()).snippet(poi.getContent()));
                         }
@@ -326,6 +329,28 @@ public class MapFragment extends Fragment implements AdapterView.OnItemClickList
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+        final Intent intent = new Intent(MapFragment.this.getContext(), NaviActivity.class);
+        intent.putExtra("startLongitude", aMap.getMyLocation().getLongitude());
+        intent.putExtra("startLatitude", aMap.getMyLocation().getLatitude());
+        intent.putExtra("endLongitude", marker.getPosition().longitude);
+        intent.putExtra("endLatitude", marker.getPosition().latitude);
+        new AlertDialog.Builder(MapFragment.this.getContext())
+                .setTitle("请选择出行方式")
+                .setPositiveButton("步行", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        intent.putExtra("way", "walk");
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("骑行", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        intent.putExtra("way", "cycle");
+                        startActivity(intent);
+                    }
+                })
+                .show();
         return false;
     }
 }

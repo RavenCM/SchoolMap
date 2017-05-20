@@ -11,5 +11,9 @@ public interface IPoiService {
 
     List<Poi> getPoi();
 
+    List<Poi> getPoi(int userId);
+
     boolean addPou(Poi poi);
+
+    boolean updatePoi(Poi poi);
 }

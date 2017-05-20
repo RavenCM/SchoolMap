@@ -60,7 +60,7 @@ public class ReflectUtil {
                     if (dtoMetaInfo.getPrimaryKey() != null) {
                         throw new MybatisException(object.getClass().getName() + " 主键必须唯一");
                     }
-                    dtoMetaInfo.setPrimaryKey(new Pair<>(columnName, field));
+                    dtoMetaInfo.setPrimaryKey(new Pair<>(ContentUtil.camelToUnderline(columnName), field));
                 }
                 if (field.isAnnotationPresent(Condition.class)) {
                     dtoMetaInfo.getConditions().put(new Pair<>(ContentUtil.camelToUnderline(columnName), AnnotationUtils.getAnnotation(field, Condition.class).operator()), field);

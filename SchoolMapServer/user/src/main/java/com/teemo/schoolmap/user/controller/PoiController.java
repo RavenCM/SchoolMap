@@ -28,8 +28,22 @@ public class PoiController {
         return new ResponseEntity<>(poiService.getPoi(), HttpStatus.OK);
     }
 
+    @GetMapping("{userId}")
+    public ResponseEntity<List> getPoisByUserId(@PathVariable int userId){
+        return new ResponseEntity<>(poiService.getPoi(userId), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity addPoi(@RequestBody Poi poi){
+        logger.info("updatePoi={}", poi);
         return new ResponseEntity(poiService.addPou(poi) ? HttpStatus.OK : HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @PutMapping("{userId}/{poiId}")
+    public ResponseEntity updatePoi(@RequestBody Poi poi){
+        logger.info("updatePoi={}", poi);
+        return new ResponseEntity(poiService.updatePoi(poi) ? HttpStatus.OK : HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
 }

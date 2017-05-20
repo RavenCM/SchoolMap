@@ -62,4 +62,11 @@ public class HttpUtil {
         Request request = new Request.Builder().url(url).post(body).header("userid", userId).build();
         return okHttpClient.newCall(request);
     }
+
+    public static Call putCall(String url, String json, String userId){
+        RequestBody body = RequestBody.create(JSON, json);
+        Log.i("userId", userId);
+        Request request = new Request.Builder().url(url).put(body).header("userid", userId).build();
+        return okHttpClient.newCall(request);
+    }
 }

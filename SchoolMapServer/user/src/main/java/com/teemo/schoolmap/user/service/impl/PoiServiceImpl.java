@@ -25,7 +25,21 @@ public class PoiServiceImpl implements IPoiService {
     }
 
     @Override
+    public List<Poi> getPoi(int userId) {
+        Poi poi = new Poi();
+        poi.setCreatedBy(userId);
+        return poiCommonMapper.select(poi);
+    }
+
+    @Override
     public boolean addPou(Poi poi) {
-        return poiCommonMapper.insert(poi) == 1;
+        poiCommonMapper.insert(poi);
+        return true;
+    }
+
+    @Override
+    public boolean updatePoi(Poi poi) {
+        poiCommonMapper.updateSelective(poi);
+        return true;
     }
 }
