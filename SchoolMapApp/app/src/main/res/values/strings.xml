@@ -34,5 +34,6 @@
     <string name="allPoi">查看全部</string>
     <string name="validPoi">有效事件</string>
     <string name="invalidPoi">失效事件</string>
+    <string name="add">添加</string>
 
 </resources>

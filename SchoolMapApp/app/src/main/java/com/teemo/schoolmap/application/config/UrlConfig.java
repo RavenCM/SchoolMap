@@ -42,4 +42,8 @@ public class UrlConfig {
     public static final String MY_POI = PROTOCOL + IP + ":" + USER_PORT + SPILT + "api/poi/" + User.getInstance().getUserId();
 
     public static final String CANCEL_POI = PROTOCOL + IP + ":" + USER_PORT + SPILT + "api/poi/" + User.getInstance().getUserId() + SPILT;
+
+    public static final String MESSAGE = PROTOCOL + IP + ":" + USER_PORT + SPILT + "api/message";
+
+    public static final String IMAGE = PROTOCOL + IP + ":" + USER_PORT + SPILT + "messageImage/";
 }

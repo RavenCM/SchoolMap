@@ -5,6 +5,7 @@ import com.teemo.schoolmap.user.dto.Poi;
 import com.teemo.schoolmap.user.service.IPoiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,12 +33,14 @@ public class PoiServiceImpl implements IPoiService {
     }
 
     @Override
+    @Transactional
     public boolean addPou(Poi poi) {
         poiCommonMapper.insert(poi);
         return true;
     }
 
     @Override
+    @Transactional
     public boolean updatePoi(Poi poi) {
         poiCommonMapper.updateSelective(poi);
         return true;

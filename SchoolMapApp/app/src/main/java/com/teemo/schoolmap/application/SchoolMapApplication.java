@@ -3,12 +3,12 @@ package com.teemo.schoolmap.application;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.util.Log;
-
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.easeui.controller.EaseUI;
 
 import java.util.List;
+
 
 /**
  * @author Teemo
@@ -22,6 +22,11 @@ public class SchoolMapApplication extends Application {
     public void onCreate() {
         super.onCreate();
         initEasemob();
+        initGalleryFinal();
+    }
+
+    private void initGalleryFinal() {
+//        Fresco.initialize(getApplicationContext());
     }
 
     // 初始化 Easemob
