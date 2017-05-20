@@ -148,8 +148,8 @@ public class PoisAcitvity extends AppCompatActivity implements View.OnClickListe
                             @Override
                             public void run() {
                                 try {
-                                    poiList.get(position).setIsEnable(0);
-                                    Response response = HttpUtil.putCall(UrlConfig.CANCEL_POI + poiList.get(position).getPoiId(), new ObjectMapper().writeValueAsString(poiList.get(position)), String.valueOf(User.getInstance().getUserId())).execute();
+                                    poiAdapter.getPoiList().get(position).setIsEnable(0);
+                                    Response response = HttpUtil.putCall(UrlConfig.CANCEL_POI + poiAdapter.getPoiList().get(position).getPoiId(), new ObjectMapper().writeValueAsString(poiList.get(position)), String.valueOf(User.getInstance().getUserId())).execute();
                                     if (200 == response.code()) {
                                         runOnUiThread(new Runnable() {
                                             @Override
@@ -164,7 +164,7 @@ public class PoisAcitvity extends AppCompatActivity implements View.OnClickListe
                                             @Override
                                             public void run() {
                                                 Toast.makeText(PoisAcitvity.this, "取消失败", Toast.LENGTH_SHORT).show();
-                                                poiList.get(position).setIsEnable(1);
+                                                poiAdapter.getPoiList().get(position).setIsEnable(1);
                                                 poiAdapter.notifyDataSetChanged();
                                             }
                                         });
@@ -182,8 +182,8 @@ public class PoisAcitvity extends AppCompatActivity implements View.OnClickListe
                             @Override
                             public void run() {
                                 try {
-                                    poiList.get(position).setIsEnable(1);
-                                    Response response = HttpUtil.putCall(UrlConfig.CANCEL_POI + poiList.get(position).getPoiId(), new ObjectMapper().writeValueAsString(poiList.get(position)), String.valueOf(User.getInstance().getUserId())).execute();
+                                    poiAdapter.getPoiList().get(position).setIsEnable(1);
+                                    Response response = HttpUtil.putCall(UrlConfig.CANCEL_POI + poiAdapter.getPoiList().get(position).getPoiId(), new ObjectMapper().writeValueAsString(poiList.get(position)), String.valueOf(User.getInstance().getUserId())).execute();
                                     if (200 == response.code()) {
                                         runOnUiThread(new Runnable() {
                                             @Override
@@ -198,7 +198,7 @@ public class PoisAcitvity extends AppCompatActivity implements View.OnClickListe
                                             @Override
                                             public void run() {
                                                 Toast.makeText(PoisAcitvity.this, "重启失败", Toast.LENGTH_SHORT).show();
-                                                poiList.get(position).setIsEnable(0);
+                                                poiAdapter.getPoiList().get(position).setIsEnable(0);
                                                 poiAdapter.notifyDataSetChanged();
                                             }
                                         });

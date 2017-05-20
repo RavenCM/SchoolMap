@@ -86,6 +86,7 @@ public class MapFragment extends Fragment implements AdapterView.OnItemClickList
     private BroadcastReceiver geoFenceReceiver;
 
     private List<Poi> poiList;
+    private List<Marker> markerList;
 
     @Nullable
     @Override
@@ -160,16 +161,27 @@ public class MapFragment extends Fragment implements AdapterView.OnItemClickList
                         ObjectMapper mapper = new ObjectMapper();
                         JavaType javaType = mapper.getTypeFactory().constructParametricType(List.class, Poi.class);
                         poiList = mapper.readValue(response.body().string(), javaType);
-                        for (Poi poi : poiList) {
-                            LatLng latLng = new LatLng(poi.getLatitude(), poi.getLongitude());
-                            Marker marker = aMap.addMarker(new MarkerOptions().position(latLng).title(poi.getTitle()).snippet(poi.getContent()));
-                        }
+                        drawPoint(poiList);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }).start();
+    }
+
+    private void drawPoint(List<Poi> poiList) {
+        if (markerList == null){
+            markerList = new ArrayList<>();
+        }
+        for (Marker marker : markerList){
+            marker.remove();
+        }
+        for (Poi poi : poiList) {
+            LatLng latLng = new LatLng(poi.getLatitude(), poi.getLongitude());
+            Marker marker = aMap.addMarker(new MarkerOptions().position(latLng).title(poi.getTitle()).snippet(poi.getContent()));
+            markerList.add(marker);
+        }
     }
 
     /**
@@ -217,7 +229,13 @@ public class MapFragment extends Fragment implements AdapterView.OnItemClickList
                 lvMenu.setVisibility(lvMenu.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
                 break;
             case R.id.ib_search:
-
+                List<Poi> searchPoiList = new ArrayList<>();
+                for (Poi poi : poiList){
+                    if (poi.getTitle().contains(etSearch.getText().toString().trim())){
+                        searchPoiList.add(poi);
+                    }
+                }
+                drawPoint(searchPoiList);
                 break;
         }
     }
