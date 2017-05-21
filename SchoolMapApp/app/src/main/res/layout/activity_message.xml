@@ -19,8 +19,18 @@
         android:scaleType="centerInside"
         android:src="@drawable/add" />
 
+    <GridView
+        android:id="@+id/gv_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_submit"
+        android:layout_below="@id/ib_add"
+        android:horizontalSpacing="@dimen/margin_small"
+        android:numColumns="3"
+        android:verticalSpacing="@dimen/margin_small" />
+
     <Button
-        android:id="@+id/btn_submit"
+        android:id="@id/btn_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

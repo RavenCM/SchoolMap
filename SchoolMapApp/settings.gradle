@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':multiple-images-selector'
 include ':easeui'

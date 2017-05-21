@@ -19,6 +19,7 @@ public class MessageImage extends BaseDTO{
     private Integer messageImageId;
 
     @Column
+    @Condition
     private Integer messageId;
 
 

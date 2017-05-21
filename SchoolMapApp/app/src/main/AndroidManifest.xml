@@ -96,6 +96,7 @@
         <activity android:name=".activity.NaviActivity" />
         <activity android:name=".activity.PoisAcitvity" />
         <activity android:name=".activity.MessageActivity" />
+        <activity android:name="com.zfdang.multiple_images_selector.ImagesSelectorActivity" />
     </application>
 
 </manifest>

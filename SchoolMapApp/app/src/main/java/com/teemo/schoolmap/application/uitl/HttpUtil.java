@@ -2,11 +2,13 @@ package com.teemo.schoolmap.application.uitl;
 
 import android.util.Log;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -63,10 +65,25 @@ public class HttpUtil {
         return okHttpClient.newCall(request);
     }
 
-    public static Call putCall(String url, String json, String userId){
+    public static Call putCall(String url, String json, String userId) {
         RequestBody body = RequestBody.create(JSON, json);
         Log.i("userId", userId);
         Request request = new Request.Builder().url(url).put(body).header("userid", userId).build();
+        return okHttpClient.newCall(request);
+    }
+
+    public static Call uploadFile(String url, String path, String fileName, String userId) {
+        File file = new File(path);
+        RequestBody fileResponse = RequestBody.create(MediaType.parse("application/octet-stream"), file);
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("image", fileName, fileResponse)
+                .build();
+        Request request = new Request.Builder()
+                .url(url)
+                .post(requestBody)
+                .header("userid", userId)
+                .build();
         return okHttpClient.newCall(request);
     }
 }

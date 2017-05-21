@@ -53,12 +53,13 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:2.8.7'
     compile 'com.github.MatteoBattilana:WeatherView:1.2.0'
     compile 'cn.finalteam:galleryfinal:1.4.6'
-//    compile 'com.squareup.picasso:picasso:2.5.2'
-//    compile 'com.github.valuesfeng:androidpicturepicker:1.0.0'
+    //    compile 'com.squareup.picasso:picasso:2.5.2'
+    //    compile 'com.github.valuesfeng:androidpicturepicker:1.0.0'
     testCompile 'junit:junit:4.12'
     compile files('libs/AMap3DMap_5.0.0_AMapNavi_5.0.0_AMapSearch_5.0.0_AMapLocation_3.3.0_20170321.jar')
     //compile files('libs/hyphenatechat_3.3.1.jar')
     compile project(':easeui')
     compile files('libs/Msc.jar')
     compile files('libs/android-smart-image-view-1.0.0.jar')
+    compile project(':multiple-images-selector')
 }

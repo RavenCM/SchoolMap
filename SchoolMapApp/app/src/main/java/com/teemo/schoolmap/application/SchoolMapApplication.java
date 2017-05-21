@@ -3,6 +3,8 @@ package com.teemo.schoolmap.application;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.util.Log;
+
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.easeui.controller.EaseUI;
@@ -26,7 +28,7 @@ public class SchoolMapApplication extends Application {
     }
 
     private void initGalleryFinal() {
-//        Fresco.initialize(getApplicationContext());
+        Fresco.initialize(getApplicationContext());
     }
 
     // 初始化 Easemob

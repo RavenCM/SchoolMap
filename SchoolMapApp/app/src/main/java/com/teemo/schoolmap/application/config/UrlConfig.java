@@ -45,5 +45,7 @@ public class UrlConfig {
 
     public static final String MESSAGE = PROTOCOL + IP + ":" + USER_PORT + SPILT + "api/message";
 
-    public static final String IMAGE = PROTOCOL + IP + ":" + USER_PORT + SPILT + "messageImage/";
+    public static final String IMAGE = PROTOCOL + IP + ":" + USER_PORT + SPILT + "image/";
+
+    public static final String FILE = PROTOCOL + IP + ":" + USER_PORT + SPILT + "api/file";
 }

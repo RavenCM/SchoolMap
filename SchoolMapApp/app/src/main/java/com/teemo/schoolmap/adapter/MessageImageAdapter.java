@@ -1,6 +1,7 @@
 package com.teemo.schoolmap.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -63,7 +64,8 @@ public class MessageImageAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.sivImage.setImageUrl(UrlConfig.IMAGE + messageImageList.get(position).getPath(), R.drawable.loading);
+        Log.i("path", UrlConfig.IMAGE + messageImageList.get(position).getPath());
+        viewHolder.sivImage.setImageUrl(UrlConfig.IMAGE + messageImageList.get(position).getPath(), R.drawable.loading, R.drawable.loading);
         return convertView;
     }
 

@@ -49,6 +49,7 @@ public class MessageServiceImpl implements IMessageService {
         messageCommonMapper.insert(message);
         if (message.getMessageImageList() != null)
             for (MessageImage messageImage : message.getMessageImageList()) {
+                messageImage.setMessageId(message.getMessageId());
                 messageImageCommonMapper.insert(messageImage);
             }
         return true;
